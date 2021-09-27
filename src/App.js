@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useEffect, useState } from 'react';
-import { Row } from 'react-bootstrap';
+import { Container, Row, Spinner } from 'react-bootstrap';
 import './App.css';
 import News from './components/News/News';
 
@@ -14,12 +14,17 @@ function App() {
   },[])
   return (
     <div className="App">
-    <h3>Latest News</h3>
-    <Row xs={1} md={4} className="g-4">
+    <Container>
+      <h2 className="my-5 fw-bold">Latest News</h2>
       {
-        news.map(nw => <News news={nw}></News>)
+        news.length === 0 ? <Spinner animation="grow" /> : <Row xs={1} md={4} className="g-4">
+        {
+          news.map(nw => <News news={nw}></News>)
+        }
+      </Row>
       }
-    </Row>
+
+    </Container>
 
       
   </div>
